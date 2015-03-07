@@ -26,4 +26,15 @@ RSpec.describe Tweet, type: :model do
     tweet.source = {text: 'this is a tweet'}
     expect( tweet.source ).to have_key( "text" )
   end
+
+  context 'When searching for tweets' do
+    it 'Retrieves a list of tweets based on a given query' do
+      Tweet.delete_all
+      tweet1 = Tweet.create( text: 'dog' )
+      tweet2 = Tweet.create( text: 'dog and cat' )
+      tweet3 = Tweet.create( text: 'cat' )
+      expect( Tweet.search_text('dog') ).to include( tweet1, tweet2 )
+      expect( Tweet.search_text('birds') ).to be_empty
+    end
+  end
 end
