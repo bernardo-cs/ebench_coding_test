@@ -21,4 +21,9 @@ RSpec.describe Tweet, type: :model do
     tweet.user = user
     expect( tweet.user ).to eq user
   end
+
+  it 'has the source of the retrieved tweet' do
+    tweet.source = {text: 'this is a tweet'}
+    expect( tweet.source ).to have_key( "text" )
+  end
 end
