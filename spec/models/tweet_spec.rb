@@ -28,13 +28,21 @@ RSpec.describe Tweet, type: :model do
   end
 
   context 'When searching for tweets' do
-    it 'Retrieves a list of tweets based on a given query' do
+    before{
       Tweet.delete_all
-      tweet1 = Tweet.create( text: 'dog' )
-      tweet2 = Tweet.create( text: 'dog and cat' )
-      tweet3 = Tweet.create( text: 'cat' )
-      expect( Tweet.search_text('dog') ).to include( tweet1, tweet2 )
+      @tweet1 = Tweet.create( text: 'dog', retweets: 5, favourites: 5 )
+      @tweet2 = Tweet.create( text: 'dog and cat', retweets: 4, favourites: 4  )
+      @tweet3 = Tweet.create( text: 'cat', retweets: 3, favourites: 3  )
+    }
+
+    it 'Retrieves a list of tweets based on a given query' do
+      expect( Tweet.search_text('dog') ).to include( @tweet1, @tweet2 )
       expect( Tweet.search_text('birds') ).to be_empty
+    end
+
+    it 'sorts queried tweets by number of retweets or favourites' do
+      expect( Tweet.search_text( 'dog' ).order( retweets: :desc ) ).to eq([@tweet1,@tweet2])
+      expect( Tweet.search_text( 'dog' ).order( favourites: :asc ) ).to eq([@tweet2,@tweet1])
     end
   end
 end
