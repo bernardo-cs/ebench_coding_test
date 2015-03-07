@@ -17,7 +17,7 @@ RSpec.describe Tweet, type: :model do
   end
 
   it 'has a user' do
-    user = User.new( user_name: 'ben' )
+    user = User.new( name: 'ben' )
     tweet.user = user
     expect( tweet.user ).to eq user
   end

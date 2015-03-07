@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150305202318) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "tweets", force: :cascade do |t|
     t.text     "text"
     t.integer  "user_id"
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150305202318) do
     t.integer  "favourites"
   end
 
-  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
+  add_index "tweets", ["user_id"], name: "index_tweets_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
