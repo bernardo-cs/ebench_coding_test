@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307160800) do
+ActiveRecord::Schema.define(version: 20150307173157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "mentions", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tweet_id"
+  end
 
   create_table "tweets", force: :cascade do |t|
     t.text     "text"
@@ -31,8 +36,9 @@ ActiveRecord::Schema.define(version: 20150307160800) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "count_of_mentions"
   end
 
 end
