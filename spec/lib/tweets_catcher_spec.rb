@@ -16,4 +16,23 @@ describe TweetsCatcher do
     tweets = @tweets.map(&:id)
     expect( tweets.to_set.size ).to eql( tweets.size )
   end
+
+  describe '#fetch_latest_tweets' do
+    before{
+      @old_tweets, @expected_new_tweets = @tweets.split( -202 )
+      @new_tweets = tweet_catcher.fetch_latest_tweets( 'golfadas', @old_tweets.first.id )
+    }
+    it 'fetches a user latest tweets given the latest retrieved tweets id' do
+      expect( @new_tweets ).to include( *@expected_new_tweets )
+    end
+
+    it 'doenst retrive already retrived tweets' do
+      expect( @new_tweets ).not_to include( *@old_tweets )
+    end
+
+    it 'all tweets have unique ids' do
+      tweets_ids = @new_tweets.map(&:id)
+      expect( tweets_ids.to_set.size ).to eq( @new_tweets.size )
+    end
+  end
 end

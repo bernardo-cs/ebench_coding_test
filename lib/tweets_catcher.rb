@@ -11,6 +11,16 @@ class TweetsCatcher
     end
   end
 
+  def fetch_latest_tweets username, tweet_id
+    tweets = fetch_without_rate_limite{ fetch( username ) }
+    fetch_without_rate_limite do
+      while( tweets.last.id > tweet_id )
+        tweets.concat( fetch( username, default_args_with_max_id( tweets.flatten.last.id ) ) )
+      end
+      tweets.flatten.select{ |t| t.id > tweet_id }
+    end
+  end
+
   def fetch_all_user_tweets username
     tweets = fetch_without_rate_limite{ fetch(username) }
     remaining_tweets = fetch_remaining_tweets( username, tweets.last.id )
@@ -45,9 +55,6 @@ class TweetsCatcher
 
   def default_args
     {count: 200, include_rts: false}
-  end
-
-  def fetch_and_store_wo_rate username
   end
 
   def fetch_without_rate_limite &block
