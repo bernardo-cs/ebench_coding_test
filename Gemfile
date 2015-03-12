@@ -9,6 +9,8 @@ gem 'rails', '4.2.0'
 gem 'sqlite3'
 # USe postgres
 gem 'pg'
+# Fetch tweets
+gem 'twitter'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -38,6 +40,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Rspec tests instead of minitest
 group :development, :test do
+  gem 'dotenv-rails' # keep environments where they belong
   gem 'pry'
   gem 'pry-rails'
   gem 'rspec-rails'
