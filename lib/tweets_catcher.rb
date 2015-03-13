@@ -40,11 +40,11 @@ class TweetsCatcher
     end
   end
 
-  private
   def fetch username, args={count: 200, include_rts: false}
     client.user_timeline( username, args )
   end
 
+  private
   def client
     @client
   end

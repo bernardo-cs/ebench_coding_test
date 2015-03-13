@@ -22,6 +22,7 @@ describe TweetsCatcher do
       @old_tweets, @expected_new_tweets = @tweets.split( -202 )
       @new_tweets = tweet_catcher.fetch_latest_tweets( 'golfadas', @old_tweets.first.id )
     }
+
     it 'fetches a user latest tweets given the latest retrieved tweets id' do
       expect( @new_tweets ).to include( *@expected_new_tweets )
     end
