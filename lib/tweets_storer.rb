@@ -10,7 +10,7 @@ class TweetsStorer
     create_tweets( Array.new(1){ tweets }.flatten )
   end
 
-  #private
+  private
   def create_tweets tweets
     tweets.each do |tweet|
       new_tweet = Tweet.new( build_attributes( tweet ) )
