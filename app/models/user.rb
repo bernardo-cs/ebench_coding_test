@@ -2,8 +2,10 @@ class User < ActiveRecord::Base
   has_many :tweets
   has_and_belongs_to_many :mentions, class_name: 'Tweet', join_table: 'mentions'
 
-  # Design decision: since tweets will be crawled once a day, cache can be
-  # updated after crawl instead of in an active record filter
+  def self.update_tweets
+    all.each(&:update_tweets)
+  end
+
   def self.update_mentions_count
     all.map(&:update_mentions_count)
   end
@@ -12,7 +14,27 @@ class User < ActiveRecord::Base
     count_of_mentions || update_mentions_count()
   end
 
+  def update_tweets
+    TweetsStorer.new( self, { text: :text,
+                             retweets: :retweet_count,
+                             favourites: :favorite_count,
+                             source: :to_json })
+      .store( fetch_tweets )
+  end
+
+  def fetch_tweets
+    if tweets.empty?
+      TweetsCatcher.new.fetch_all_user_tweets self.name
+    else
+      TweetsCatcher.new.fetch_latest_tweets self.name, latest_fetched_tweet_id
+    end
+  end
+
   private
+  def latest_fetched_tweet_id
+    tweets.first.remote_id
+  end
+
   def update_mentions_count
     update_attribute( :count_of_mentions, mentions.count)
     count_of_mentions

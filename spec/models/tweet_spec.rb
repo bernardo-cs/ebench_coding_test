@@ -27,6 +27,7 @@ RSpec.describe Tweet, type: :model do
     expect( tweet.source ).to have_key( "text" )
   end
 
+
   context 'When searching for tweets' do
     before{
       Tweet.delete_all

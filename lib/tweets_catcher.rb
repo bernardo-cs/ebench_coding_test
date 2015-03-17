@@ -12,12 +12,14 @@ class TweetsCatcher
   end
 
   def fetch_latest_tweets username, tweet_id
+
     tweets = fetch_without_rate_limite{ fetch( username ) }
     fetch_without_rate_limite do
       while( tweets.last.id > tweet_id )
-        tweets.concat( fetch( username, default_args_with_max_id( tweets.flatten.last.id ) ) )
+        tweets = tweets | fetch( username, default_args_with_max_id( tweets.last.id ) )
       end
-      tweets.flatten.select{ |t| t.id > tweet_id }
+
+      tweets.select{ |t| t.id > tweet_id }
     end
   end
 
@@ -59,12 +61,20 @@ class TweetsCatcher
 
   def fetch_without_rate_limite &block
     tweets = []
+    tries = 3
     begin
       tweets << yield
     rescue Twitter::Error::TooManyRequests => error
+      Rails.logger.info error.message
       sleep error.rate_limit.reset_in + 1
       retry
+    rescue Twitter::Error => error
+      Rails.logger.info error.message
+      retry unless (tries -= 1).zero?
     end
     tweets.flatten
   end
 end
+
+
+Tweet.where("source->>'kind' = ?", "user_renamed")

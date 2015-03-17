@@ -18,4 +18,5 @@ describe TweetsStorer do
     expect( user.tweets.last.retweets ).to eq( @tweets.last.retweet_count )
     expect( user.tweets.fetch( @tweets.size/2 ).favourites ).to eq( @tweets.fetch( @tweets.size/2 ).favorite_count)
   end
+
 end
