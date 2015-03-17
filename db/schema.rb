@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315173810) do
+ActiveRecord::Schema.define(version: 20150317092706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,12 @@ ActiveRecord::Schema.define(version: 20150315173810) do
   end
 
   create_table "que_jobs", primary_key: "queue", force: :cascade do |t|
-    t.integer  "priority",    limit: 2, default: 100,                                        null: false
-    t.datetime "run_at",                default: "now()",                                    null: false
-    t.integer  "job_id",      limit: 8, default: "nextval('que_jobs_job_id_seq'::regclass)", null: false
-    t.text     "job_class",                                                                  null: false
-    t.json     "args",                  default: [],                                         null: false
-    t.integer  "error_count",           default: 0,                                          null: false
+    t.integer  "priority",    limit: 2, default: 100,                   null: false
+    t.datetime "run_at",                default: '2015-03-15 20:38:02', null: false
+    t.integer  "job_id",      limit: 8, default: 0,                     null: false
+    t.text     "job_class",                                             null: false
+    t.json     "args",                  default: [],                    null: false
+    t.integer  "error_count",           default: 0,                     null: false
     t.text     "last_error"
   end
 
@@ -50,5 +50,7 @@ ActiveRecord::Schema.define(version: 20150315173810) do
     t.datetime "updated_at",        null: false
     t.integer  "count_of_mentions"
   end
+
+  add_index "users", ["name"], name: "index_users_on_name", using: :btree
 
 end
