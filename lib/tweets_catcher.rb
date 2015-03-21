@@ -60,10 +60,9 @@ class TweetsCatcher
   end
 
   def fetch_without_rate_limite &block
-    tweets = []
     tries = 3
     begin
-      tweets << yield
+      yield
     rescue Twitter::Error::TooManyRequests => error
       Rails.logger.info error.message
       sleep error.rate_limit.reset_in + 1
@@ -72,7 +71,6 @@ class TweetsCatcher
       Rails.logger.info error.message
       retry unless (tries -= 1).zero?
     end
-    tweets.flatten
   end
 end
 
