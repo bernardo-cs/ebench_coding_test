@@ -1,0 +1,9 @@
+<%= form_tag('/tweets/search', method: :get) do %> 
+  <%= label_tag( :q, "Search tweets text" ) %>
+  <%= text_field_tag( :q ) %>
+  <%= label_tag( :sort_retweet, "Sort by retweets" ) %>
+  <%= radio_button_tag( :sort, 'retweets') %>
+  <%= label_tag( :sort_favorites, "Sort by favorites" ) %>
+  <%= radio_button_tag( :sort, 'favorites') %>
+  <%= submit_tag( "Search" ) %>
+<% end %>
