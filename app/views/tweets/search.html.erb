@@ -5,5 +5,5 @@
 <%= render 'tweets/search' %>
 
 <% @result.each do |tweet| %>
-  <p> <%= tweet.text %> | fv: <%= tweet.favourites %> | rt: <%= tweet.retweets %> </p>
+  <p> <%= tweet.username %>: <%= tweet.text %> | fv: <%= tweet.favourites %> | rt: <%= tweet.retweets %> </p>
 <% end %>

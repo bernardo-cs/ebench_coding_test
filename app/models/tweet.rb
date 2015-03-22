@@ -9,10 +9,18 @@ class Tweet < ActiveRecord::Base
   end
 
   def self.search_text query
-    where("to_tsvector('english', text) @@ to_tsquery(?)", query )
+    where("to_tsvector('english', text) @@ to_tsquery(?)", parse_query( query ) )
+  end
+
+  def username
+    user.name
   end
 
   private
+  def self.parse_query query
+    query.gsub(/[^a-zA-Z0-9]/, ' ').split(' ').join(' & ')
+  end
+
   def build_mentions
     mentions << local_mentions
   end

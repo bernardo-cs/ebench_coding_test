@@ -36,6 +36,10 @@ RSpec.describe Tweet, type: :model do
       @tweet3 = Tweet.create( text: 'cat', retweets: 3, favourites: 3  )
     }
 
+    it 'is possible to search for more than one word' do
+      expect( Tweet.search_text('dog cat') ).to include( @tweet2 )
+    end
+
     it 'Retrieves a list of tweets based on a given query' do
       expect( Tweet.search_text('dog') ).to include( @tweet1, @tweet2 )
       expect( Tweet.search_text('birds') ).to be_empty
