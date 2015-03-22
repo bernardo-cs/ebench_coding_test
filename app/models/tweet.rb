@@ -18,7 +18,7 @@ class Tweet < ActiveRecord::Base
   end
 
   def remote_mentions
-    source["entities"]["user_mentions"].map{|m| m["screen_name"]}
+    source.nil? ? [] : source["entities"]["user_mentions"].map{|m| m["screen_name"]}
   end
 
   def local_mentions

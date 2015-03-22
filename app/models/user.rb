@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :tweets
+  has_many :tweets, dependent: :destroy
   has_and_belongs_to_many :mentions, class_name: 'Tweet', join_table: 'mentions'
 
   def self.update_tweets
@@ -23,10 +23,11 @@ class User < ActiveRecord::Base
   end
 
   def fetch_tweets
+    tc = TweetsCatcher.new
     if tweets.empty?
-      TweetsCatcher.new.fetch_all_user_tweets self.name
+      tc.fetch_all_user_tweets self.name
     else
-      TweetsCatcher.new.fetch_latest_tweets self.name, latest_fetched_tweet_id
+      tc.fetch_latest_tweets self.name, latest_fetched_tweet_id
     end
   end
 

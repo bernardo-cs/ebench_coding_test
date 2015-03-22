@@ -1,8 +1,6 @@
 namespace :user do
   desc "Manage user related tasks, like fetching new tweets and cleaning existing users"
 
-  task default: :update_all
-
   task scaffold: [:environment, :clean] do
     RAILS_CORE_MEMBERS = ['dhh', 'bitsweat', 'nzkoz', 'josevalim', 'spastorino', 'fxn', 'tenderlove']
     ANGULAR_CORE_MEMBERS = []
