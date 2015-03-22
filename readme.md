@@ -2,5 +2,5 @@
 TODO:
 - [x] Models 
 - [x] Background job retrieve tweets
-- [ ] Controllers and view
+- [x] Controllers and view
 - [ ] Add angular
