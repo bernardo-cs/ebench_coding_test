@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe UserController, type: :controller do
+RSpec.describe UsersController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
@@ -20,5 +20,4 @@ RSpec.describe UserController, type: :controller do
       expect(response).to render_template('index')
     end
   end
-
 end

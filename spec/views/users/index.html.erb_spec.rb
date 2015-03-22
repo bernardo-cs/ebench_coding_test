@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "user/index.html.erb", type: :view do
+RSpec.describe "users/index.html.erb", type: :view do
   before{
     assign( :users, [
       stub_model( User, name: 'tenderlove', count_of_mentions: 5 ),
