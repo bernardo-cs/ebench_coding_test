@@ -25,8 +25,5 @@ module AngularTwitter
 
     # auto load lib
     config.autoload_paths << Rails.root.join('lib')
-
-    # Use que as background job backend
-    config.active_job.queue_adapter = :que
   end
 end
