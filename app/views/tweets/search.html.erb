@@ -1,2 +1,5 @@
 <h1>Tweets#search</h1>
-<p>Find me in app/views/tweets/search.html.erb</p>
+
+<% @result.each do |tweet| %>
+  <p> <%= tweet.text %> </p>
+<% end %>
