@@ -11,9 +11,11 @@ namespace :user do
   end
 
   task fetch_tweets: :environment do
+    tweets_count = Tweet.count
     ActiveRecord::Base.transaction do
       User.update_tweets
     end
+    Rails.logger.info( "Fetched #{Tweet.count - tweets_count } tweets!" )
   end
 
   task update_mentions_count: :environment do
