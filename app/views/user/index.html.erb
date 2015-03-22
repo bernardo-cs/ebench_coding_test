@@ -1,0 +1,8 @@
+<h1>User#index</h1>
+<p>Find me in app/views/user/index.html.erb</p>
+
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %>, <%= user.count_of_mentions %> </li>   
+  <% end %>
+</ul>
