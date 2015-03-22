@@ -31,13 +31,13 @@ class User < ActiveRecord::Base
     end
   end
 
-  private
-  def latest_fetched_tweet_id
-    tweets.first.remote_id
-  end
-
   def update_mentions_count
     update_attribute( :count_of_mentions, mentions.count)
     count_of_mentions
+  end
+
+  private
+  def latest_fetched_tweet_id
+    tweets.first.remote_id
   end
 end
