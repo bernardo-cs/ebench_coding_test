@@ -58,3 +58,8 @@ group :development, :test do
   gem 'spring'
 end
 
+ # Assets management with rails-assets
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+  gem 'rails-assets-angular-charts'
+end
