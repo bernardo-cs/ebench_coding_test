@@ -133,6 +133,7 @@ GEM
       rails-assets-angular
       rails-assets-d3 (~> 3.3.10)
     rails-assets-d3 (3.3.13)
+    rails-assets-underscore (1.8.2)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.5)
@@ -239,6 +240,7 @@ DEPENDENCIES
   rails (= 4.2.0)
   rails-assets-angular!
   rails-assets-angular-charts!
+  rails-assets-underscore!
   rspec-activemodel-mocks
   rspec-rails
   sass-rails (~> 5.0)
