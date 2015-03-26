@@ -66,5 +66,5 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
   gem 'rails-assets-underscore'
-  gem 'rails-assets-angular-charts'
+  gem 'rails-assets-angular-nvd3'
 end

@@ -2,12 +2,13 @@
 
 <h1>List of users ranked by number of mentions</h1>
 
+<ul>
+  <% @users.each do |user| %>
+    <li><%= user.name %>, <%= user.count_of_mentions %> </li>   
+  <% end %>
+</ul>
+
 <div ng-controller="MainCtrl">
-  <div 
-    data-ac-chart="'bar'" 
-    data-ac-data="data" 
-    data-ac-config="config" 
-    class="chart">
-  </div>
+  <nvd3 options="options" data="data"></nvd3>
 </div>
 

@@ -11,8 +11,10 @@
 // about supported directives.
 //
 //= require turbolinks
-//= require angular
+//= require jquery
 //= require underscore
+//= require angular
 //= require d3
-//= require angular-charts
+//= require nvd3
+//= require angular-nvd3
 //= require_tree .
