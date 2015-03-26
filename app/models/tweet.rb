@@ -18,7 +18,7 @@ class Tweet < ActiveRecord::Base
 
   private
   def self.parse_query query
-    query.gsub(/[^a-zA-Z0-9]/, ' ').split(' ').join(' & ')
+    query.to_s.gsub(/[^a-zA-Z0-9]/, ' ').split(' ').join(' & ')
   end
 
   def build_mentions

@@ -19,6 +19,19 @@ RSpec.describe TweetsController, type: :controller do
       get :search
       expect(response).to render_template('search')
     end
-  end
 
+    context "When getting json" do
+      before{
+        get :search, format: :json
+      }
+
+      it 'should be successfull' do
+        expect( response ).to have_http_status( :success )
+      end
+
+      it 'assigns @result' do
+        expect( assigns( :result ) ).to eq([])
+      end
+    end
+  end
 end
