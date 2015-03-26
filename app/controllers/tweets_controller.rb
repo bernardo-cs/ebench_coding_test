@@ -1,6 +1,11 @@
 class TweetsController < ApplicationController
   def search
     @result = sort( Tweet.search_text( search_query ) )
+
+    respond_to do |format|
+      format.html{ render :search }
+      format.json{ paginate json: @result }
+    end
   end
 
   private
