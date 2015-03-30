@@ -8,7 +8,7 @@ describe TweetsCatcher do
 
   it 'fetches all user tweets' do
     expect( @tweets ).not_to be_empty
-    expect( @tweets.first.text ).to eq( "Dai até  não pagar impostos..“@sapo: Passos: \"Ninguém espere que eu seja um cidadão perfeito\" http://t.co/8v6eJ0nkod http://t.co/vPNUhXmtw8”" )
+    expect( @tweets.first.text ).to eq( "@rbates 💪" )
     expect( @tweets.last.text ).to eq( "to a rasca para ir mijar" )
   end
 

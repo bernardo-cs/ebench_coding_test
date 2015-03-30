@@ -8,6 +8,8 @@ RSpec.describe TweetsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     it 'searches for tweets' do
+      allow_message_expectations_on_nil
+      allow( nil ).to receive(:order)
       expect( Tweet ).to receive( :search_text )
       get :search, params: { q: "cat" }
     end

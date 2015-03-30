@@ -247,6 +247,7 @@ DEPENDENCIES
   pry-rescue
   pry-stack_explorer
   rails (= 4.2.0)
+  rails-assets-angular!
   rails-assets-angular-nvd3!
   rails-assets-underscore!
   rspec-activemodel-mocks

@@ -1,9 +1,19 @@
 <%= link_to( "Go to user list", users_index_path ) %>
 
-<h1>Tweets#search</h1>
+<div ng-controller='TweetsPaginationCtrl'>
+  <h1>Tweets search: {{tweets.query}} sort: {{sort}}</h1>
+  <form>
+    <input type="text" ng-model="tweetsSearchText" value="{{tweets.query}}" ng-model-instant>
+    <input type="radio" ng-model="sort" value="retweets">  Sort by Retweets <br/>
+    <input type="radio" ng-model="sort" value="favourites">  Sort by Favourites <br/>
+    <button ng-click="tweetsSearch()" > Search! </button>
+  </form>
 
-<%= render 'tweets/search' %>
-
-<% @result.each do |tweet| %>
-  <p> <%= tweet.username %>: <%= tweet.text %> | fv: <%= tweet.favourites %> | rt: <%= tweet.retweets %> </p>
-<% end %>
+  <div infinite-scroll='tweets.nextPage()' infinite-scroll-disabled='tweets.busy || tweets.done' infinite-scroll-distance='1'>
+    <div ng-repeat='item in tweets.items track by $index'>
+      <span>{{item.text}} | rt: {{item.retweets}} | fv: {{item.favourites}}</span>
+    </div>
+    <div ng-show='tweets.busy'>Loading data...</div>
+    <div ng-show='tweets.done'>Fetched all!</div>
+  </div>
+</div>
