@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.2.1'
 
 gem 'spring-commands-rspec', group: :development
 
@@ -60,6 +61,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'puma', '~> 2.7.1' # change production web server
+end
  # Assets management with rails-assets
 source 'https://rails-assets.org' do
   gem 'rails-assets-angular'
