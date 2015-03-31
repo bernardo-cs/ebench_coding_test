@@ -2,7 +2,7 @@ namespace :user do
   desc "Manage user related tasks, like fetching new tweets and cleaning existing users"
 
   task scaffold: [:environment, :clean] do
-    RAILS_CORE_MEMBERS = ['dhh', 'bitsweat', 'nzkoz', 'josevalim', 'spastorino', 'fxn', 'tenderlove']
+    RAILS_CORE_MEMBERS = ['dhh', 'tenderlove']
     ANGULAR_CORE_MEMBERS = []
     members = RAILS_CORE_MEMBERS + ANGULAR_CORE_MEMBERS
 

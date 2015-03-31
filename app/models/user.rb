@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
                              retweets: :retweet_count,
                              favourites: :favorite_count,
                              source: :to_json })
-      .store( fetch_tweets )
+                .store( fetch_tweets )
   end
 
   def fetch_tweets

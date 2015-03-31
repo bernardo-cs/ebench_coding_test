@@ -10,7 +10,13 @@ angular.module('tweetRank', ['nvd3', 'infinite-scroll'])
         deferred.resolve(users);
         return deferred.promisse;
       }
-      return $http.get('/users/index.json').then(function(resp) { return resp.data; });
+      return $http.get('/users/index.json').then(function(resp) { 
+        if ( resp['status'] != 200 ){
+          alert('Problem contacting server..');
+        } else{
+          return resp.data; 
+        }
+      });
     }
   }
 }])
