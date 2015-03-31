@@ -21,16 +21,6 @@ ActiveRecord::Schema.define(version: 20150317092706) do
     t.integer "tweet_id"
   end
 
-  create_table "que_jobs", primary_key: "queue", force: :cascade do |t|
-    t.integer  "priority",    limit: 2, default: 100,                   null: false
-    t.datetime "run_at",                default: '2015-03-15 20:38:02', null: false
-    t.integer  "job_id",      limit: 8, default: 0,                     null: false
-    t.text     "job_class",                                             null: false
-    t.json     "args",                  default: [],                    null: false
-    t.integer  "error_count",           default: 0,                     null: false
-    t.text     "last_error"
-  end
-
   create_table "tweets", force: :cascade do |t|
     t.text     "text"
     t.integer  "user_id"
@@ -53,4 +43,5 @@ ActiveRecord::Schema.define(version: 20150317092706) do
 
   add_index "users", ["name"], name: "index_users_on_name", using: :btree
 
+  add_foreign_key "tweets", "users"
 end
